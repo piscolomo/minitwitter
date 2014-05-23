@@ -21,10 +21,10 @@ window.onload = function(){
 	socket.on("message", function(data){
 		tweetmessage.value = "";
 		var data = JSON.parse(data);
-		var sectionright = document.getElementById("right");
+		var feed = document.getElementById("feed");
 		var newtweet = document.createElement("div");
 		newtweet.innerHTML = '<h3>' + data.name + '</h3><p>' + data.tweet + '</p>';
-		sectionright.insertBefore(newtweet, sectionright.firstChild.nextSibling);
+		feed.insertBefore(newtweet, feed.firstChild.nextSibling);
 	});
 
 };
