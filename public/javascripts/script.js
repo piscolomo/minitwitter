@@ -4,10 +4,13 @@ $(function(){
 
 	$("#feed").on("click", ".favorite", function(e){
 		e.preventDefault();
-		socketid = $(this).attr("data-id");
-		name= $("#name").html();
-		tweet = $(this).prev().html();
-		socket.emit("favorite", socketid, name, tweet);
+		if (!$(this).hasClass("isfavorited")){
+			socketid = $(this).attr("data-id");
+			name= $("#name").html();
+			tweet = $(this).prev().html();
+			socket.emit("favorite", socketid, name, tweet);
+			$(this).addClass("isfavorited");
+		}
 	});
 
 	socket.on('login', function(data){

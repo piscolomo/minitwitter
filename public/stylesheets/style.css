@@ -74,7 +74,11 @@ section#feed div a.favorite{
 	float: right;
 }
 
-section#feed div:not(:first-child):hover a.favorite{
+section#feed div a.favorite.isfavorited{
+	color: #ffac33;
+}
+
+section#feed div:not(:first-child):hover a.favorite:not(.isfavorited){
 	color: #8899a6;
 	cursor: pointer;
 }
