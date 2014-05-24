@@ -20,15 +20,16 @@ $(function(){
 
 	$("#tweetbutton").on("click", function(e){
 		e.preventDefault();
-		socket.emit("message", JSON.stringify({
-			name: $("#name").html(),
-			tweet: $("#tweetmessage").val()
-		}));
-
+		if($("#tweetmessage").val()!=""){
+			socket.emit("message", JSON.stringify({
+				name: $("#name").html(),
+				tweet: $("#tweetmessage").val()
+			}));
+			$("#tweetmessage").val("");
+		}
 	});
 	
 	socket.on("message", function(data, socketid){
-		$("#tweetmessage").val("");
 		var data = JSON.parse(data);
 		$('<div><h3>' + data.name + '</h3><p>' + data.tweet + '</p><a class="favorite" data-id="'+socketid+'">Favorito</a></div>').insertAfter($("#feed div").first());
 	});
