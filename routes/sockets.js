@@ -11,7 +11,9 @@ exports.initialize = function(server) {
 		});
 
 		socket.on("favorite", function(socketid, name, tweet){
-			io.sockets.socket(socketid).emit("favorite", name, tweet);
+			if (socket.id != socketid){
+				io.sockets.socket(socketid).emit("favorite", name, tweet);
+			}
 		});
 
 	}); 
