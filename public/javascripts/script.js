@@ -1,22 +1,18 @@
-window.onload = function(){
+$(function(){
 
 	var socket = io.connect('http://localhost:3000');
 
 	var tweetbutton = document.getElementById("tweetbutton");
 	var tweetmessage = document.getElementById("tweetmessage");
-	var favorites = document.getElementsByClassName("favorite");
 
-	function listenerfavorites(){
-		for (var i=0;i<favorites.length;i++){
-			favorites[i].addEventListener("click", function(e){
-				e.preventDefault();
-				socketid = this.getAttribute("data-id");
-				name= document.getElementById("name").textContent;
-				tweet = this.previousSibling.textContent;
-				socket.emit("favorite", socketid, name, tweet);
-			});
-		}
-	}
+	$("#feed").on("click", ".favorite", function(e){
+		e.preventDefault();
+		console.log("why");
+		socketid = $(this).attr("data-id");
+		name= $("#name").html();
+		tweet = $(this).prev().html();
+		socket.emit("favorite", socketid, name, tweet);
+	});
 
 	socket.on('login', function(data){
 		var name = prompt("Cual es tu nombre?");
@@ -38,7 +34,6 @@ window.onload = function(){
 		var newtweet = document.createElement("div");
 		newtweet.innerHTML = '<h3>' + data.name + '</h3><p>' + data.tweet + '</p><a class="favorite" data-id="'+socketid+'">Favorito</a>';
 		feed.insertBefore(newtweet, feed.firstChild.nextSibling);
-		listenerfavorites();
 	});
 
 	socket.on("favorite", function(name, tweet){
@@ -48,4 +43,4 @@ window.onload = function(){
 		notifications.insertBefore(newnotification, notifications.firstChild.nextSibling);
 	});
 
-};
+});
