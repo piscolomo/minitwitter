@@ -52,7 +52,7 @@ section#feed{
 section#feed div{
 	margin-bottom: 1px;
 	background:#fff; 
-	padding: 15px;
+	padding: 15px 15px 30px 15px;
 }
 
 section#feed div:first-child{
@@ -68,6 +68,17 @@ section#feed div:last-child{
 section#feed div:not(:first-child):hover{
 	background-color: #f5f8fa;
 }
+
+section#feed div a.favorite{
+	color: #e1e8ed;
+	float: right;
+}
+
+section#feed div:not(:first-child):hover a.favorite{
+	color: #8899a6;
+	cursor: pointer;
+}
+
 
 textarea#tweetmessage{
 	color: #8899a6;

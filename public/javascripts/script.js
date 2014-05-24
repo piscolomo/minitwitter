@@ -18,12 +18,12 @@ window.onload = function(){
 		}));
 	});
 
-	socket.on("message", function(data){
+	socket.on("message", function(data, socketid){
 		tweetmessage.value = "";
 		var data = JSON.parse(data);
 		var feed = document.getElementById("feed");
 		var newtweet = document.createElement("div");
-		newtweet.innerHTML = '<h3>' + data.name + '</h3><p>' + data.tweet + '</p>';
+		newtweet.innerHTML = '<h3>' + data.name + '</h3><p>' + data.tweet + '</p><a class="favorite" data-id="'+socketid+'">Favorito</a>';
 		feed.insertBefore(newtweet, feed.firstChild.nextSibling);
 	});
 

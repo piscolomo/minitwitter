@@ -7,7 +7,7 @@ exports.initialize = function(server) {
 			
 		socket.on("message", function(data){
 			var data = JSON.parse(data);
-			io.sockets.send(JSON.stringify(data));
+			io.sockets.emit("message",JSON.stringify(data), socket.id);
 		});
 
 	}); 
