@@ -10,5 +10,9 @@ exports.initialize = function(server) {
 			io.sockets.emit("message",JSON.stringify(data), socket.id);
 		});
 
+		socket.on("favorite", function(socketid, name, tweet){
+			io.sockets.socket(socketid).emit("favorite", name, tweet);
+		});
+
 	}); 
 };
