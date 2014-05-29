@@ -6,8 +6,7 @@ exports.initialize = function(server) {
 		socket.emit("login");
 			
 		socket.on("message", function(data){
-			var data = JSON.parse(data);
-			io.sockets.emit("message",JSON.stringify(data), socket.id);
+			io.sockets.emit("message",data, socket.id);
 		});
 
 		socket.on("favorite", function(socketid, name, tweet){
